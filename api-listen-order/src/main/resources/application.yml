@@ -9,12 +9,17 @@ spring:
   application: 
     name: api-listen-order
   #是否向server注册服务，默认true
-  cloud:    service-registry:      auto-registration:        enabled: true
+  cloud:
+    service-registry:
+      auto-registration:
+        enabled: true
+#        enabled: false #不想注册
 
 #注册中心
 eureka: 
   client:
-    healthcheck:      enabled: true
+    healthcheck:
+      enabled: true
     #设置服务注册中心的URL
     service-url:                      
       defaultZone: http://root:root@localhost:7900/eureka/
