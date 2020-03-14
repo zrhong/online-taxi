@@ -1,4 +1,4 @@
-spring: 
+spring:
   application: 
         #应用名称
     name: service-sms
@@ -54,7 +54,8 @@ eureka:
 #    enable-self-preservation: false       #关闭保护机制
 #    eviction-interval-timer-in-ms: 2000   #剔除失效服务间隔,单位毫秒
   client:
-    healthcheck:      enabled: true
+    healthcheck:
+      enabled: true
     #设置服务注册中心的URL
     service-url:                      
       defaultZone: http://root:root@eureka-7900:7900/eureka/
@@ -68,7 +69,7 @@ eureka:
     metadata-map:
       user.name: root
       user.password: root
-    
+    hostname: localhost
 #Admin监控
 management:
   endpoints:
@@ -84,7 +85,8 @@ logging:
     root: info
     org.springframework.web.servlet: debug      
 ---
-spring:  profiles: 8002
+spring:
+  profiles: 8002
 server: 
     #服务端口
   port: 8002

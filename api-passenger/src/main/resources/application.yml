@@ -1,12 +1,12 @@
 #服务端口
-server: 
-  port: 9005
-  servlet:
-    context-path:
+server:
+  port: 9002
+#  servlet:
+#    context-path:
 
 #应用名称及验证账号
-spring: 
-  application: 
+spring:
+  application:
     name: api-passenger
     admin:
       enabled: true
@@ -24,48 +24,58 @@ spring:
 #    sampler:
 #      rate: 1
 #注册中心
-eureka: 
+eureka:
   client:
     #设置服务注册中心的URL
-    service-url:                      
+    service-url:
       defaultZone: http://root:root@eureka-7900:7900/eureka/
-  instance: 
+  instance:
     hostname: localhost
-    instance-id: api-passenger
-      
-    
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+
+
 feign:
   compression:
     request:
       mime-types:
-      - text/xml
+        - text/xml
       min-request-size: 2048
   #开启feignhystrix
   hystrix:
-    enabled: true  
-    
+    enabled: true
 
-  client: 
-    config:  
-      service-valuation: 
-        
-#        request-interceptors:
-#        - com.online.taxi.passenger.feign.interceptor.MyBasicAuthRequestInterceptor
+
+  client:
+    config:
+      service-valuation:
+
+        #        request-interceptors:
+        #        - com.online.taxi.passenger.feign.interceptor.MyBasicAuthRequestInterceptor
         connect-timeout: 5000
         read-timeout: 5000
         logger-level: basic
-        
+
 #service-sms: 
 #  ribbon: 
 #    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
-service-valuation: 
-  ribbon: 
+#service-valuation:
+#  ribbon:
+#      NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule #配置规则 随机
+  #    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule #配置规则 轮询
+  #    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RetryRule #配置规则 重试
+  #    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule #配置规则 响应时间权重
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule #配置规则 最空闲连接策略
+
+service-valuation:
+  ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
 ribbon:
   eager-load:
     enabled: true
     clients:
-    - SERVICE-SMS
+      - SERVICE-SMS
+      - SERVICE-VALUATION
 
 
 #Admin监控
@@ -79,7 +89,7 @@ management:
       ##默认是never
       show-details: ALWAYS
       enabled: true
-          
+
 #logging:
 #  level:
 #    org.springframework: DEBUG

@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import com.online.taxi.driver.ribbonconfig.RibbonConfiguration;
 
 @Configuration
-//@RibbonClient(name = "service-sms",configuration = RibbonConfiguration.class)
+@RibbonClient(name = "service-sms",configuration = RibbonConfiguration.class)
 public class TestConfiguration {
 
 }

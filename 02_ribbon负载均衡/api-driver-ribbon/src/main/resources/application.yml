@@ -27,30 +27,30 @@ eureka:
     #设置服务注册中心的URL
     service-url:                      
       defaultZone: http://root:root@eureka-7900:7900/eureka/
-  instance: 
+  instance:
     hostname: localhost
       
     
 #手写ribbon        
-service-sms: 
-  ribbon: 
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+#service-sms:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
 #    eureka: 
 #      enable: false
 #    listOfServers: localhost:8004,localhost:8005
 
 #正常ribbon，单独配置service-sms的负载均衡策略
-#service-sms:  
-#  ribbon:  
+#service-sms:
+#  ribbon:
 #    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
     # 自定义负载策略
 #    NFLoadBalancerRuleClassName: com.online.taxi.driver.ribbonconfig.MsbRandomRule
     
-#service-valuation: 
-#  ribbon: 
+#service-valuation:
+#  ribbon:
 #    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 
-ribbon: 
+ribbon:
   eager-load:
     enabled: true
     clients:
